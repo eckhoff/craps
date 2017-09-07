@@ -8,37 +8,55 @@ def roll():
 
 numbs = [2,3,4,5,6,7,8,9,10,11,12]
 stats = [0,0,0,0,0,0,0,0,0,0,0]
+status = 'off'
+point = 0
+craps = 'nothing yet'
 
-def sort():
-    if a == 2:
-        stats[0] = stats[0] + 1
-    if a == 3:
-        stats[1] = stats[1] + 1
-    if a == 4:
-        stats[2] = stats[2] + 1
-    if a == 5:
-        stats[3] = stats[3] + 1
-    if a == 6:
-        stats[4] = stats[4] + 1
-    if a == 7:
-        stats[5] = stats[5] + 1
-    if a == 8:
-        stats[6] = stats[6] + 1
-    if a == 9:
-        stats[7] = stats[7] + 1
-    if a == 10:
-        stats[8] = stats[8] + 1
-    if a == 11:
-        stats[9] = stats[9] + 1
-    if a == 12:
-        stats[10] = stats[10] + 1
+def roll_off():
+    if total == 2:
+        craps = 'craps'
+        return craps, 2
+    if total == 3:
+        craps = 'craps'
+        return craps, 3
+    if total == 4:
+        status = 'on'
+        point = 4
+        return status, point
+    if total == 5:
+        status = 'on'
+        point = 5
+        return status, point
+    if total == 6:
+        status = 'on'
+        point = 6
+        return status, point
+    if total == 7:
+        craps = 'win'
+        return craps, 7
+    if total == 8:
+        status = 'on'
+        point = 8
+        return status, point
+    if total == 9:
+        status = 'on'
+        point = 9
+        return status, point
+    if total == 10:
+        status = 'on'
+        point = 10
+        return status, point
+    if total == 11:
+        craps = 'win'
+        return craps, 11
+    if total == 12:
+        craps = 'craps'
+        return craps, 12
 
-i = 0
-
-while i < 200:
-    a = roll()
-    sort()
-    i = i + 1
-
-print(numbs)
-print(stats)
+# def roll_on():
+total = roll()
+print(roll_off())
+# print(status)
+# print(point)
+# print(craps)
+# print(total)

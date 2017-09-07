@@ -1,4 +1,7 @@
 import random
+import matplotlib.pyplot as plt; plt.rcdefaults()
+import numpy as np
+import matplotlib.pyplot as plt
 
 def roll():
     dice1 = random.randint(1,6)
@@ -35,10 +38,16 @@ def sort():
 
 i = 0
 
-while i < 200:
+while i < 20000:
     a = roll()
     sort()
     i = i + 1
 
-print(numbs)
-print(stats)
+y_pos = np.arange(len(stats))
+
+plt.bar(y_pos, stats, align='center', alpha=0.5)
+plt.xticks(y_pos, numbs)
+plt.ylabel('frequency')
+plt.title('likelyhood of 2 dice roll')
+
+plt.show()

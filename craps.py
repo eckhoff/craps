@@ -1,3 +1,6 @@
+# Assumes $1000 bankroll with a $10 passline bet
+# No odds
+
 import random
 
 def roll():
@@ -58,27 +61,32 @@ def roll_on():
         status = 'on'
         return 'nothing yet', status
 
-total = roll()
-status = roll_off()[2]
-win = roll_off()[0]
-point = roll_off()[1]
-
-while status == 'on':
+bankroll = 1000
+i = 0
+while i < 1000:
     total = roll()
-    status = roll_on()[1]
-    win = roll_on()[0]
+    status = roll_off()[2]
+    win = roll_off()[0]
+    point = roll_off()[1]
 
-if win == 'win' and point != 'no point':
-    print(win)
-    print('the winning point was: ', total)
-if win == 'loss' and point > 0:
-    print(win)
-    print('sorry, you sevened out')
-    print('the point was: ', point)
-if win == 'win' and point == 'no point':
-    print('opening roll win!')
-    print('you rolled a: ', total)
-if win == 'craps':
-    print(win)
-    print('you crapped out with a: ', total)
+
+    while status == 'on':
+        total = roll()
+        status = roll_on()[1]
+        win = roll_on()[0]
+
+    if win == 'win' and point != 'no point':
+        bankroll = bankroll + 10
+        i = i + 1
+    if win == 'loss' and point > 0:
+        bankroll = bankroll - 10
+        i = i + 1
+    if win == 'win' and point == 'no point':
+        bankroll = bankroll + 10
+        i = i + 1
+    if win == 'craps':
+        bankroll = bankroll - 10
+        i = i + 1
+
+print(bankroll)
 

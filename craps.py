@@ -53,12 +53,42 @@ def roll_off():
         craps = 'craps'
         return craps, 'no point', 'off'
 
-# def roll_on():
+def roll_on():
+    if point == total:
+        status = 'off'
+        return 'win', status
+    elif total == 7:
+        status = 'off'
+        return 'loss', status
+    else:
+        status = 'on'
+        return 'nothing yet', status
+
 total = roll()
 status = roll_off()[2]
 win = roll_off()[0]
 point = roll_off()[1]
-print('win/loss =', win)
-print('point is:', status)
-print('the roll was a:', total)
-print('the point to hit is:', point)
+# print('win/loss =', win)
+# print('point is:', status)
+# print('the roll was a:', total)
+# print('the point to hit is:', point)
+
+while status == 'on':
+    total = roll()
+    status = roll_on()[1]
+    win = roll_on()[0]
+
+if win == 'win' and point != 'no point':
+    print(win)
+    print('the winning point was: ', total)
+if win == 'loss' and point > 0:
+    print(win)
+    print('sorry, you sevened out')
+    print('the point was: ', point)
+if win == 'win' and point == 'no point':
+    print('opening roll win!')
+    print('you rolled a: ', total)
+if win == 'craps':
+    print(win)
+    print('you crapped out with a: ', total)
+

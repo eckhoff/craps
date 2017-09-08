@@ -15,48 +15,50 @@ craps = 'nothing yet'
 def roll_off():
     if total == 2:
         craps = 'craps'
-        return craps, 2
+        return craps, 'no point', 'off'
     if total == 3:
         craps = 'craps'
-        return craps, 3
+        return craps, 'no point', 'off'
     if total == 4:
         status = 'on'
         point = 4
-        return status, point
+        return 'nothing yet', point, status
     if total == 5:
         status = 'on'
         point = 5
-        return status, point
+        return 'nothing yet', point, status
     if total == 6:
         status = 'on'
         point = 6
-        return status, point
+        return 'nothing yet', point, status
     if total == 7:
         craps = 'win'
-        return craps, 7
+        return craps, 'no point', 'off'
     if total == 8:
         status = 'on'
         point = 8
-        return status, point
+        return 'nothing yet', point, status
     if total == 9:
         status = 'on'
         point = 9
-        return status, point
+        return 'nothing yet', point, status
     if total == 10:
         status = 'on'
         point = 10
-        return status, point
+        return 'nothing yet', point, status
     if total == 11:
         craps = 'win'
-        return craps, 11
+        return craps, 'no point', 'off'
     if total == 12:
         craps = 'craps'
-        return craps, 12
+        return craps, 'no point', 'off'
 
 # def roll_on():
 total = roll()
-print(roll_off())
-# print(status)
-# print(point)
-# print(craps)
-# print(total)
+status = roll_off()[2]
+win = roll_off()[0]
+point = roll_off()[1]
+print('win/loss =', win)
+print('point is:', status)
+print('the roll was a:', total)
+print('the point to hit is:', point)

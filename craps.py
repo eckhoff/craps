@@ -1,5 +1,5 @@
 # Assumes $1000 bankroll with a $10 passline bet
-# No odds
+# $10 odds on every point
 
 import random
 
@@ -29,7 +29,7 @@ def roll_off():
         point = 6
         return 'nothing yet', point, status
     if total == 7:
-        craps = 'win'
+        craps = 'offwin'
         return craps, 'no point', 'off'
     if total == 8:
         status = 'on'
@@ -44,7 +44,7 @@ def roll_off():
         point = 10
         return 'nothing yet', point, status
     if total == 11:
-        craps = 'win'
+        craps = 'offwin'
         return craps, 'no point', 'off'
     if total == 12:
         craps = 'craps'
@@ -61,9 +61,20 @@ def roll_on():
         status = 'on'
         return 'nothing yet', status
 
+def odds():
+    if point == 4 or point == 10:
+        odds = 2
+        return odds
+    if point == 5 or point == 9:
+        odds = 3/2
+        return odds
+    if point == 6 or point == 8:
+        odds = 6/5
+        return odds
+
 bankroll = 1000
 i = 0
-while i < 1000:
+while i < 10000:
     total = roll()
     status = roll_off()[2]
     win = roll_off()[0]
@@ -75,13 +86,13 @@ while i < 1000:
         status = roll_on()[1]
         win = roll_on()[0]
 
-    if win == 'win' and point != 'no point':
-        bankroll = bankroll + 10
+    if win == 'win':
+        bankroll = bankroll + 10 + 10*odds()
         i = i + 1
-    if win == 'loss' and point > 0:
-        bankroll = bankroll - 10
+    if win == 'loss':
+        bankroll = bankroll - 10 - 10
         i = i + 1
-    if win == 'win' and point == 'no point':
+    if win == 'offwin':
         bankroll = bankroll + 10
         i = i + 1
     if win == 'craps':

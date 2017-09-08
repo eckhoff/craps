@@ -113,3 +113,6 @@ print('you missed', pointmiss, 'points')
 print('on the opening roll you won', openwin, 'times')
 print('on the opening roll you lost', openloss, 'times')
 
+# house edge
+edge = 100*((bankroll - 1000)/100000)
+print(edge)

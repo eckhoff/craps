@@ -73,6 +73,10 @@ def odds():
         return odds
 
 bankroll = 1000
+pointhit = 0
+pointmiss = 0
+openwin = 0
+openloss = 0
 i = 0
 while i < 10000:
     total = roll()
@@ -88,16 +92,24 @@ while i < 10000:
 
     if win == 'win':
         bankroll = bankroll + 10 + 10*odds()
+        pointhit = pointhit + 1
         i = i + 1
     if win == 'loss':
         bankroll = bankroll - 10 - 10
+        pointmiss = pointmiss + 1
         i = i + 1
     if win == 'offwin':
         bankroll = bankroll + 10
+        openwin = openwin + 1
         i = i + 1
     if win == 'craps':
         bankroll = bankroll - 10
+        openloss = openloss + 1
         i = i + 1
 
 print(bankroll)
+print('you hit', pointhit, 'points')
+print('you missed', pointmiss, 'points')
+print('on the opening roll you won', openwin, 'times')
+print('on the opening roll you lost', openloss, 'times')
 

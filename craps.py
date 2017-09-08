@@ -6,12 +6,6 @@ def roll():
     total = dice1 + dice2
     return total
 
-numbs = [2,3,4,5,6,7,8,9,10,11,12]
-stats = [0,0,0,0,0,0,0,0,0,0,0]
-status = 'off'
-point = 0
-craps = 'nothing yet'
-
 def roll_off():
     if total == 2:
         craps = 'craps'
@@ -68,10 +62,6 @@ total = roll()
 status = roll_off()[2]
 win = roll_off()[0]
 point = roll_off()[1]
-# print('win/loss =', win)
-# print('point is:', status)
-# print('the roll was a:', total)
-# print('the point to hit is:', point)
 
 while status == 'on':
     total = roll()

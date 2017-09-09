@@ -1,5 +1,7 @@
 # Assumes $1000 bankroll with a $10 passline bet
-# $10 odds on every point
+# $10 odds on 4 and 10
+# $20 odds on 5 and 9
+# $30 odd on 6 and 8
 
 import random
 
@@ -64,13 +66,16 @@ def roll_on():
 def odds():
     if point == 4 or point == 10:
         odds = 2
-        return odds
+        bet = 10
+        return odds, bet
     if point == 5 or point == 9:
         odds = 3/2
-        return odds
+        bet = 20
+        return odds, bet
     if point == 6 or point == 8:
         odds = 6/5
-        return odds
+        bet = 30
+        return odds, bet
 
 bankroll = 1000
 pointhit = 0
@@ -91,11 +96,11 @@ while i < 10000:
         win = roll_on()[0]
 
     if win == 'win':
-        bankroll = bankroll + 10 + 10*odds()
+        bankroll = bankroll + 10 + odds()[1]*odds()[0]
         pointhit = pointhit + 1
         i = i + 1
     if win == 'loss':
-        bankroll = bankroll - 10 - 10
+        bankroll = bankroll - 10 - odds()[1]
         pointmiss = pointmiss + 1
         i = i + 1
     if win == 'offwin':
@@ -113,6 +118,4 @@ print('you missed', pointmiss, 'points')
 print('on the opening roll you won', openwin, 'times')
 print('on the opening roll you lost', openloss, 'times')
 
-# house edge
-edge = 100*((bankroll - 1000)/100000)
-print(edge)
+

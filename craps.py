@@ -48,6 +48,7 @@ y_pos = np.arange(len(stats))
 plt.bar(y_pos, stats, align='center', alpha=0.5)
 plt.xticks(y_pos, numbs)
 plt.ylabel('frequency')
+plt.xlabel('number rolled')
 plt.title('likelyhood of 2 dice roll')
 
 plt.show()
